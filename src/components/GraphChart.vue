@@ -15,7 +15,7 @@
   // import * as ecStat from "echarts-stat";
 
   export default {
-    name: 'bar',
+    name: 'graph',
     components: {
       IEcharts
     },
@@ -24,7 +24,7 @@
       loading: false,
       graph: {
         title: {
-          text: 'ECharts Hello World'
+          text: 'Q-nodes'
         },
         tooltip: {},
         series: [{
@@ -38,7 +38,7 @@
             repulsion: 100,
             edgeLength: 5
           },
-          edges: []
+          links: []
         }]
       }
     }),
@@ -58,26 +58,27 @@
           .then((json) => {
             const that = this;
             let nodes = json.nodes;
-            nodes.map(n => {
+            nodes = nodes.map(n => {
               return {
-                fixed: true,
-                x: that.width / 2,
-                y: that.height / 2,
-                symbolSize: 20,
-                id: n
+                symbolSize: 10,
+                id: n,
+                name: n
               }
             });
             json.edges = json.edges.map(e => {
               return {
-                source: nodes.indexOf(e.source),
-                target: nodes.indexOf(e.target)
+                source: e.source,
+                target:e.target,
+                lineStyle: {
+                  width: 1,
+                  curveness: 0.0
+                }
               }
             });
-            console.log(json.edges);
             that.graph.series = [{
               roam: true,
               data: nodes,
-              edges: json.edges
+              links: json.edges
             }]
           })
 

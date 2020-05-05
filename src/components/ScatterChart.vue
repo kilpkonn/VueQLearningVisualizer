@@ -15,7 +15,7 @@
   import * as ecStat from "echarts-stat";
 
   export default {
-    name: 'bar',
+    name: 'scatter',
     components: {
       IEcharts
     },
@@ -24,7 +24,7 @@
       loading: false,
       scatter: {
         title: {
-          text: 'ECharts Hello World'
+          text: 'Simulation results'
         },
         tooltip: {},
         xAxis: {
@@ -51,7 +51,7 @@
                 position: 'left',
                 formatter: null,
                 color: '#333',
-                fontSize: 14
+                fontSize: 12
               },
               data: [{
                 coord: []

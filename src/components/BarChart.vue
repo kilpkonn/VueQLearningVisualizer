@@ -24,7 +24,7 @@
       loading: false,
       bar: {
         title: {
-          text: 'ECharts Hello World'
+          text: 'Buckets'
         },
         tooltip: {},
         xAxis: {
