@@ -1,7 +1,7 @@
 <template>
     <div class="echarts">
         <IEcharts
-                :option="bar"
+                :option="line"
                 :loading="loading"
                 @ready="onReady"
                 @click="onClick"
@@ -15,17 +15,16 @@
   // import * as ecStat from "echarts-stat";
 
   export default {
-    name: 'bar',
+    name: 'line',
     components: {
       IEcharts
     },
     props: {},
     data: () => ({
       loading: false,
-      jsonData: {},
-      bar: {
+      line: {
         title: {
-          text: 'Buckets'
+          text: 'aaa'
         },
         tooltip: {},
         xAxis: {
@@ -34,7 +33,7 @@
         yAxis: {},
         series: [{
           name: 'Results',
-          type: 'bar',
+          type: 'line',
           data: [0],
         }]
       }
@@ -50,14 +49,19 @@
         console.log(event, instance, ECharts);
       },
       async loadData() {
-        fetch("/data/rod_angles.json")
+        fetch("/data/avg_move_list.json")
           .then((res) => res.json())
-          .then((json) => this.jsonData = json)
-      },
-      async showData(n) {
-        const that = this;
-        that.bar.xAxis.data = this.jsonData[n].rod_angles;
-        that.bar.series[0].data = this.jsonData[n].rod_angles_values;
+          .then((json) => {
+            const that = this;
+
+            let xData = [];
+            for (let i = 0; i < json.length; i++) {
+              xData.push(i);
+            }
+
+            that.line.xAxis.data = xData;
+            that.line.series[0].data = json;
+          })
       }
     }
   };

@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="columns">
     <ScatterChart class="column" />
-    <BarChart class="column" />
+    <BarChart ref="barChart" class="column" />
     <GraphChart class="column" />
+    <LineChart class="column" />
   </div>
 </template>
 
@@ -10,13 +11,23 @@
 import ScatterChart from './components/ScatterChart.vue'
 import BarChart from "./components/BarChart";
 import GraphChart from "./components/GraphChart";
+import LineChart from "./components/LineChart";
 
 export default {
   name: 'App',
   components: {
     ScatterChart,
     BarChart,
-    GraphChart
+    GraphChart,
+    LineChart
+  },
+  mounted() {
+    setInterval(() => this.updateCharts(), 1000);
+  },
+  methods: {
+    updateCharts() {
+      this.$refs.barChar.showData(2)
+    }
   }
 }
 </script>
