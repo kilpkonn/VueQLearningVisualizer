@@ -1,7 +1,7 @@
 <template>
     <div class="echarts">
         <IEcharts
-                :option="bar"
+                :option="graph"
                 :loading="loading"
                 @ready="onReady"
                 @click="onClick"
@@ -22,19 +22,23 @@
     props: {},
     data: () => ({
       loading: false,
-      bar: {
+      graph: {
         title: {
           text: 'ECharts Hello World'
         },
         tooltip: {},
-        xAxis: {
-          data: [0]
-        },
-        yAxis: {},
         series: [{
-          name: 'Results',
-          type: 'bar',
+          type: 'graph',
+          layout: 'force',
+          animation: false,
           data: [0],
+          force: {
+            // initLayout: 'circular'
+            // gravity: 0
+            repulsion: 100,
+            edgeLength: 5
+          },
+          edges: []
         }]
       }
     }),
@@ -49,13 +53,34 @@
         console.log(event, instance, ECharts);
       },
       async loadData() {
-        fetch("/data/rod_angles.json")
+        fetch("/data/nodes.json")
           .then((res) => res.json())
           .then((json) => {
             const that = this;
-            that.bar.xAxis.data = json.rod_angles;
-            that.bar.series[0].data = json.rod_angles_values;
+            let nodes = json.nodes;
+            nodes.map(n => {
+              return {
+                fixed: true,
+                x: that.width / 2,
+                y: that.height / 2,
+                symbolSize: 20,
+                id: n
+              }
+            });
+            json.edges = json.edges.map(e => {
+              return {
+                source: nodes.indexOf(e.source),
+                target: nodes.indexOf(e.target)
+              }
+            });
+            console.log(json.edges);
+            that.graph.series = [{
+              roam: true,
+              data: nodes,
+              edges: json.edges
+            }]
           })
+
       }
     }
   };
