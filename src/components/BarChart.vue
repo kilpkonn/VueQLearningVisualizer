@@ -1,0 +1,69 @@
+<template>
+    <div class="echarts">
+        <IEcharts
+                :option="bar"
+                :loading="loading"
+                @ready="onReady"
+                @click="onClick"
+        />
+        <!-- <button @click="doRandom">Random</button> -->
+    </div>
+</template>
+
+<script type="text/babel">
+  import IEcharts from 'vue-echarts-v3/src/full.js';
+  // import * as ecStat from "echarts-stat";
+
+  export default {
+    name: 'bar',
+    components: {
+      IEcharts
+    },
+    props: {},
+    data: () => ({
+      loading: false,
+      bar: {
+        title: {
+          text: 'ECharts Hello World'
+        },
+        tooltip: {},
+        xAxis: {
+          data: [0]
+        },
+        yAxis: {},
+        series: [{
+          name: 'Results',
+          type: 'bar',
+          data: [0],
+        }]
+      }
+    }),
+    async mounted() {
+      this.loadData();
+    },
+    methods: {
+      onReady(instance, ECharts) {
+        console.log(instance, ECharts);
+      },
+      onClick(event, instance, ECharts) {
+        console.log(event, instance, ECharts);
+      },
+      async loadData() {
+        fetch("/data/rod_angles.json")
+          .then((res) => res.json())
+          .then((json) => {
+            const that = this;
+            that.bar.xAxis.data = json.rod_angles;
+            that.bar.series[0].data = json.rod_angles_values;
+          })
+      }
+    }
+  };
+</script>
+
+<style scoped>
+    .echarts {
+        width: 400px;
+        height: 400px;
+    }
+</style>

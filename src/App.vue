@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <ScatterChart />
+    <BarChart />
   </div>
 </template>
 
 <script>
 import ScatterChart from './components/ScatterChart.vue'
+import BarChart from "./components/BarChart";
 
 export default {
   name: 'App',
   components: {
-    ScatterChart
+    ScatterChart,
+    BarChart,
   }
 }
 </script>

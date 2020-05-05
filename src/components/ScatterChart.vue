@@ -1,7 +1,7 @@
 <template>
     <div class="echarts">
         <IEcharts
-                :option="bar"
+                :option="scatter"
                 :loading="loading"
                 @ready="onReady"
                 @click="onClick"
@@ -22,7 +22,7 @@
     props: {},
     data: () => ({
       loading: false,
-      bar: {
+      scatter: {
         title: {
           text: 'ECharts Hello World'
         },
@@ -71,7 +71,7 @@
           data.push(Math.floor(Math.random() * (max + 1 - min) + min));
         }
         that.loading = !that.loading;
-        that.bar.series[0].data = data;
+        that.scatter.series[0].data = data;
       },
       onReady(instance, ECharts) {
         console.log(instance, ECharts);
@@ -90,20 +90,20 @@
               xData.push(i);
               regData.push([i, res[i]])
             }
-            that.bar.xAxis.data = xData;
-            that.bar.series[0].data = res;
+            that.scatter.xAxis.data = xData;
+            that.scatter.series[0].data = res;
 
             const myRegression = ecStat.regression('polynomial', regData, 3);
 
             myRegression.points.sort(function (a, b) {
               return a[0] - b[0];
             });
-            that.bar.series[1].data = myRegression.points;
+            that.scatter.series[1].data = myRegression.points;
 
-            that.bar.series[1].markPoint.data = [{
+            that.scatter.series[1].markPoint.data = [{
               coord: myRegression.points[myRegression.points.length - 1]
             }];
-            that.bar.series[1].markPoint.label.formatter = myRegression.expression;
+            that.scatter.series[1].markPoint.label.formatter = myRegression.expression;
           })
       }
     }
