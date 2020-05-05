@@ -25,7 +25,7 @@
       jsonData: {},
       line: {
         title: {
-          text: 'aaa'
+          text: 'Alpha & Epsilon'
         },
         tooltip: {},
         xAxis: {
@@ -60,25 +60,24 @@
       onClick(event, instance, ECharts) {
         console.log(event, instance, ECharts);
       },
-      async loadData() {
+      loadData() {
         fetch("/data/avg_move_list.json")
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      async showData(n) {
+      showData(n) {
         if (!this.jsonData) return;
-
         const that = this;
 
         let xData = [];
-        for (let i = 0; i <= n; i++) {
+        for (let i = 0; i <= n % this.jsonData.move.length; i++) {
           xData.push(i);
         }
 
         that.line.xAxis.data = xData;
-        that.line.series[0].data = this.jsonData.move.slice(0, n);
-        that.line.series[1].data = this.jsonData.alpha.slice(0, n);
-        that.line.series[2].data = this.jsonData.epsilon.slice(0, n);
+        that.line.series[0].data = this.jsonData.move.slice(0, n % this.jsonData.move.length);
+        that.line.series[1].data = this.jsonData.alpha.slice(0, n % this.jsonData.move.length);
+        that.line.series[2].data = this.jsonData.epsilon.slice(0, n % this.jsonData.move.length);
       }
     }
   };

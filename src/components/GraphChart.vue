@@ -32,7 +32,7 @@
           type: 'graph',
           layout: 'force',
           animation: false,
-          data: [0],
+          data: [],
           force: {
             // initLayout: 'circular'
             // gravity: 0
@@ -53,36 +53,44 @@
       onClick(event, instance, ECharts) {
         console.log(event, instance, ECharts);
       },
-      async loadData() {
+     loadData() {
         fetch("/data/nodes.json")
           .then((res) => res.json())
-          .then((json) => {
-            const that = this;
-            let nodes = json.nodes;
-            nodes = nodes.map(n => {
-              return {
+          .then((json) => this.jsonData = json);
+      },
+      showData(n) {
+        if (!this.jsonData) return;
+        const that = this;
+        let nodes = [];
+        let edges = [];
+        for (let i = 0; i < n; i++) {
+          this.jsonData[i].nodes.forEach(node => {
+            if (nodes.filter(no => no.id === node).length === 0) {
+              nodes.push({
                 symbolSize: 10,
-                id: n,
-                name: n
-              }
-            });
-            json.edges = json.edges.map(e => {
-              return {
-                source: e.source,
-                target:e.target,
-                lineStyle: {
-                  width: 1,
-                  curveness: 0.0
-                }
-              }
-            });
-            that.graph.series = [{
-              roam: true,
-              data: nodes,
-              links: json.edges
-            }]
-          })
+                id: node,
+                name: node
+              });
+            }
+          });
 
+          this.jsonData[i].edges.forEach(e => {
+            edges.push({
+              source: e.source,
+              target: e.target,
+              lineStyle: {
+                width: 1,
+                curveness: 0.0
+              }
+            });
+          });
+        }
+        if (that.graph.series[0].data.length !== nodes.length) {
+          that.graph.series[0].data = nodes;
+        }
+        if (that.graph.series[0].links.length !== edges.length) {
+          that.graph.series[0].links = edges;
+        }
       }
     }
   };

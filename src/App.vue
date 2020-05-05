@@ -2,7 +2,7 @@
   <div id="app" class="columns">
     <ScatterChart ref="scatterChart" class="column" />
     <BarChart ref="barChart" class="column" />
-    <GraphChart class="column" />
+    <GraphChart ref="graphChart" class="column" />
     <LineChart ref="lineChart" class="column" />
   </div>
 </template>
@@ -21,14 +21,19 @@ export default {
     GraphChart,
     LineChart
   },
+  data: () => ({
+    n: 0
+  }),
   mounted() {
-    setInterval(() => this.updateCharts(), 1000);
+    setInterval(() => this.updateCharts(), 300);
   },
   methods: {
     updateCharts() {
-      this.$refs.barChart.showData(2);
-      this.$refs.scatterChart.showData(2);
-      this.$refs.lineChart.showData(2);
+      this.n++;
+      this.$refs.barChart.showData(this.n);
+      this.$refs.scatterChart.showData(this.n);
+      this.$refs.lineChart.showData(this.n);
+      this.$refs.graphChart.showData(this.n);
     }
   }
 }

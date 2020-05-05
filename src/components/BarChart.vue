@@ -25,7 +25,7 @@
       jsonData: {},
       bar: {
         title: {
-          text: 'Buckets'
+          text: 'Buckets distribution'
         },
         tooltip: {},
         xAxis: {
@@ -49,16 +49,16 @@
       onClick(event, instance, ECharts) {
         console.log(event, instance, ECharts);
       },
-      async loadData() {
+      loadData() {
         fetch("/data/rod_angles.json")
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      async showData(n) {
-        if (!this.jsonData) return;
+      showData(n) {
+        if (!this.jsonData[n % this.jsonData.length]) return;
         const that = this;
-        that.bar.xAxis.data = this.jsonData[n].rod_angles;
-        that.bar.series[0].data = this.jsonData[n].rod_angles_values;
+        that.bar.xAxis.data = this.jsonData[n % this.jsonData.length].rod_angles;
+        that.bar.series[0].data = this.jsonData[n % this.jsonData.length].rod_angles_values;
       }
     }
   };

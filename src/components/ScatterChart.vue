@@ -6,7 +6,6 @@
                 @ready="onReady"
                 @click="onClick"
         />
-        <button @click="doRandom">Random</button>
     </div>
 </template>
 
@@ -47,13 +46,13 @@
               itemStyle: {
                 color: 'transparent'
               },
-              label: {
+              /*label: {
                 show: true,
                 position: 'left',
                 formatter: null,
                 color: '#333',
                 fontSize: 12
-              },
+              },*/
               data: [{
                 coord: []
               }]
@@ -65,27 +64,18 @@
       this.loadData();
     },
     methods: {
-      doRandom() {
-        const that = this;
-        let data = [];
-        for (let i = 0, min = 5, max = 99; i < 6; i++) {
-          data.push(Math.floor(Math.random() * (max + 1 - min) + min));
-        }
-        that.loading = !that.loading;
-        that.scatter.series[0].data = data;
-      },
       onReady(instance, ECharts) {
         console.log(instance, ECharts);
       },
       onClick(event, instance, ECharts) {
         console.log(event, instance, ECharts);
       },
-      async loadData() {
+      loadData() {
         fetch("/data/result_list.json")
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      async showData(n) {
+      showData(n) {
         if (!this.jsonData) return;
 
         const that = this;
@@ -108,7 +98,7 @@
         that.scatter.series[1].markPoint.data = [{
           coord: myRegression.points[myRegression.points.length - 1]
         }];
-        that.scatter.series[1].markPoint.label.formatter = myRegression.expression;
+        // that.scatter.series[1].markPoint.label.formatter = myRegression.expression;
       }
     }
   };
