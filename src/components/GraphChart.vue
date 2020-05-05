@@ -22,6 +22,7 @@
     props: {},
     data: () => ({
       loading: false,
+      jsonData: {},
       graph: {
         title: {
           text: 'Q-nodes'

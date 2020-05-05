@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="columns">
-    <ScatterChart class="column" />
+    <ScatterChart ref="scatterChart" class="column" />
     <BarChart ref="barChart" class="column" />
     <GraphChart class="column" />
-    <LineChart class="column" />
+    <LineChart ref="lineChart" class="column" />
   </div>
 </template>
 
@@ -26,7 +26,9 @@ export default {
   },
   methods: {
     updateCharts() {
-      this.$refs.barChar.showData(2)
+      this.$refs.barChart.showData(2);
+      this.$refs.scatterChart.showData(2);
+      this.$refs.lineChart.showData(2);
     }
   }
 }

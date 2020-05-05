@@ -55,6 +55,7 @@
           .then((json) => this.jsonData = json)
       },
       async showData(n) {
+        if (!this.jsonData) return;
         const that = this;
         that.bar.xAxis.data = this.jsonData[n].rod_angles;
         that.bar.series[0].data = this.jsonData[n].rod_angles_values;

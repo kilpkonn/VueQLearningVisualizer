@@ -22,6 +22,7 @@
     props: {},
     data: () => ({
       loading: false,
+      jsonData: {},
       scatter: {
         title: {
           text: 'Simulation results'
@@ -82,29 +83,32 @@
       async loadData() {
         fetch("/data/result_list.json")
           .then((res) => res.json())
-          .then((res) => {
-            const that = this;
-            let xData = [];
-            let regData = [];
-            for (let i = 0; i < res.length; i++) {
-              xData.push(i);
-              regData.push([i, res[i]])
-            }
-            that.scatter.xAxis.data = xData;
-            that.scatter.series[0].data = res;
+          .then((json) => this.jsonData = json)
+      },
+      async showData(n) {
+        if (!this.jsonData) return;
 
-            const myRegression = ecStat.regression('polynomial', regData, 3);
+        const that = this;
+        let xData = [];
+        let regData = [];
+        for (let i = 0; i < n; i++) {
+          xData.push(i);
+          regData.push([i, this.jsonData[i]])
+        }
+        that.scatter.xAxis.data = xData;
+        that.scatter.series[0].data = this.jsonData.slice(0, n);
 
-            myRegression.points.sort(function (a, b) {
-              return a[0] - b[0];
-            });
-            that.scatter.series[1].data = myRegression.points;
+        const myRegression = ecStat.regression('polynomial', regData, 3);
 
-            that.scatter.series[1].markPoint.data = [{
-              coord: myRegression.points[myRegression.points.length - 1]
-            }];
-            that.scatter.series[1].markPoint.label.formatter = myRegression.expression;
-          })
+        myRegression.points.sort(function (a, b) {
+          return a[0] - b[0];
+        });
+        that.scatter.series[1].data = myRegression.points;
+
+        that.scatter.series[1].markPoint.data = [{
+          coord: myRegression.points[myRegression.points.length - 1]
+        }];
+        that.scatter.series[1].markPoint.label.formatter = myRegression.expression;
       }
     }
   };

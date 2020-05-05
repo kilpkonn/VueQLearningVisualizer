@@ -15,13 +15,14 @@
   // import * as ecStat from "echarts-stat";
 
   export default {
-    name: 'line',
+    name: 'lineChart',
     components: {
       IEcharts
     },
     props: {},
     data: () => ({
       loading: false,
+      jsonData: {},
       line: {
         title: {
           text: 'aaa'
@@ -35,7 +36,18 @@
           name: 'Results',
           type: 'line',
           data: [0],
-        }]
+        },
+          {
+            name: 'Alpha',
+            type: 'line',
+            data: [0],
+          },
+          {
+            name: 'Epsilon',
+            type: 'line',
+            data: [0],
+          },
+        ]
       }
     }),
     async mounted() {
@@ -51,17 +63,22 @@
       async loadData() {
         fetch("/data/avg_move_list.json")
           .then((res) => res.json())
-          .then((json) => {
-            const that = this;
+          .then((json) => this.jsonData = json)
+      },
+      async showData(n) {
+        if (!this.jsonData) return;
 
-            let xData = [];
-            for (let i = 0; i < json.length; i++) {
-              xData.push(i);
-            }
+        const that = this;
 
-            that.line.xAxis.data = xData;
-            that.line.series[0].data = json;
-          })
+        let xData = [];
+        for (let i = 0; i <= n; i++) {
+          xData.push(i);
+        }
+
+        that.line.xAxis.data = xData;
+        that.line.series[0].data = this.jsonData.move.slice(0, n);
+        that.line.series[1].data = this.jsonData.alpha.slice(0, n);
+        that.line.series[2].data = this.jsonData.epsilon.slice(0, n);
       }
     }
   };
