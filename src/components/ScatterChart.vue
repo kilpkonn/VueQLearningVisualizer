@@ -81,14 +81,14 @@
         const that = this;
         let xData = [];
         let regData = [];
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < n % this.jsonData.length; i++) {
           xData.push(i);
           regData.push([i, this.jsonData[i]])
         }
         that.scatter.xAxis.data = xData;
-        that.scatter.series[0].data = this.jsonData.slice(0, n);
+        that.scatter.series[0].data = this.jsonData.slice(0, n % this.jsonData.length);
 
-        const myRegression = ecStat.regression('polynomial', regData, 3);
+        const myRegression = ecStat.regression('polynomial', regData, 4);
 
         myRegression.points.sort(function (a, b) {
           return a[0] - b[0];

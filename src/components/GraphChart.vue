@@ -31,11 +31,11 @@
         series: [{
           type: 'graph',
           layout: 'force',
-          animation: false,
+          animation: true,
           data: [],
           force: {
-            // initLayout: 'circular'
-            // gravity: 0
+            initLayout: 'circular',
+            gravity: 0,
             repulsion: 100,
             edgeLength: 5
           },

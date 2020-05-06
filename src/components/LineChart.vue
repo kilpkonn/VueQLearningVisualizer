@@ -25,7 +25,7 @@
       jsonData: {},
       line: {
         title: {
-          text: 'Alpha & Epsilon'
+          text: 'Alpha & Epsilon vs Avg move'
         },
         tooltip: {},
         xAxis: {

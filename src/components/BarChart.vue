@@ -31,7 +31,10 @@
         xAxis: {
           data: [0]
         },
-        yAxis: {},
+        yAxis: {
+          type: 'log',
+          min: 1
+        },
         series: [{
           name: 'Results',
           type: 'bar',
@@ -56,6 +59,7 @@
       },
       showData(n) {
         if (!this.jsonData[n % this.jsonData.length]) return;
+
         const that = this;
         that.bar.xAxis.data = this.jsonData[n % this.jsonData.length].rod_angles;
         that.bar.series[0].data = this.jsonData[n % this.jsonData.length].rod_angles_values;
