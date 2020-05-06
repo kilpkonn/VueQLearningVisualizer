@@ -70,7 +70,7 @@
         console.log(event, instance, ECharts);
       },
       loadData() {
-        fetch("/data/rod_angles.json")
+        fetch("./data/rod_angles.json")
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },

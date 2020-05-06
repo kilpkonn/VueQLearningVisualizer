@@ -70,6 +70,7 @@
         .secondary-charts-container {
             margin-top: 40vh;
             margin-bottom: 0;
+
         }
     }
 
