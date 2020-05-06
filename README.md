@@ -1,6 +1,6 @@
 # q-learning-visualizer
 
-[https://kilpkonn.github.io/vue-q-learning-visualizer/](#https://kilpkonn.github.io/vue-q-learning-visualizer/)
+[https://kilpkonn.github.io/vue-q-learning-visualizer/](https://kilpkonn.github.io/vue-q-learning-visualizer/)
 
 ## Project setup
 ```
