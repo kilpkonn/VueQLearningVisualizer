@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/vue-q-learning-visualizer',
+  publicPath: '/~taannu/kasutajaliidesed/prax4/',
 };
