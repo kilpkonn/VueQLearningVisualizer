@@ -65,8 +65,8 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      showData(n) {
-        if (!this.jsonData) return;
+      async showData(n) {
+        if (!this.jsonData || !this.jsonData.move) return;
         const that = this;
 
         let xData = [];

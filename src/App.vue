@@ -1,9 +1,16 @@
 <template>
-  <div id="app" class="columns">
-    <ScatterChart ref="scatterChart" class="column" />
-    <BarChart ref="barChart" class="column" />
-    <GraphChart ref="graphChart" class="column" />
-    <LineChart ref="lineChart" class="column" />
+  <div id="app">
+    <div class="is-centered">
+      <h1 class="is-size-1">Q learning</h1>
+    </div>
+    <div class="columns">
+      <GraphChart ref="graphChart" class="column" />
+    </div>
+    <div class="columns">
+      <ScatterChart ref="scatterChart" class="column" />
+      <BarChart ref="barChart" class="column" />
+      <LineChart ref="lineChart" class="column" />
+    </div>
   </div>
 </template>
 
@@ -47,6 +54,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>

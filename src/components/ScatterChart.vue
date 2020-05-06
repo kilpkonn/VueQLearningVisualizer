@@ -30,7 +30,10 @@
         xAxis: {
           data: [0]
         },
-        yAxis: {},
+        yAxis: {
+          min: 0,
+          max: 200
+        },
         series: [{
           name: 'Results',
           type: 'scatter',
@@ -75,7 +78,7 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      showData(n) {
+      async showData(n) {
         if (!this.jsonData) return;
 
         const that = this;

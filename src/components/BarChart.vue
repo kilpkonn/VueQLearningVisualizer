@@ -57,7 +57,7 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      showData(n) {
+      async showData(n) {
         if (!this.jsonData[n % this.jsonData.length]) return;
 
         const that = this;
