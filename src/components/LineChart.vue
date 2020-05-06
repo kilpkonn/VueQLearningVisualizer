@@ -12,6 +12,7 @@
 
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.js';
+  import { LinearGradient } from "echarts/lib/util/graphic";
   // import * as ecStat from "echarts-stat";
 
   export default {
@@ -25,27 +26,57 @@
       jsonData: {},
       line: {
         title: {
-          text: 'Alpha & Epsilon vs Avg move'
+          text: 'Alpha & Epsilon vs Avg move',
+          textStyle: {
+            color: "#d4d4d4"
+          }
         },
         tooltip: {},
         xAxis: {
           data: [0]
+        },
+        axisLabel: {
+          fontWeight: 'bolder',
+          color: '#b6b6b6',
+          shadowColor: '#c6c5c5',
+          shadowBlur: 10
         },
         yAxis: {},
         series: [{
           name: 'Results',
           type: 'line',
           data: [0],
+          color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+            offset: 0,
+            color: '#1f7bff'
+          }, {
+            offset: 1,
+            color: '#d7e8fc'
+          }]),
         },
           {
             name: 'Alpha',
             type: 'line',
             data: [0],
+            color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+              offset: 0,
+              color: '#5b1fff'
+            }, {
+              offset: 1,
+              color: '#b665fd'
+            }]),
           },
           {
             name: 'Epsilon',
             type: 'line',
             data: [0],
+            color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+              offset: 0,
+              color: '#9a0707'
+            }, {
+              offset: 1,
+              color: '#c77e31'
+            }]),
           },
         ]
       }
@@ -65,7 +96,7 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      async showData(n) {
+      showData(n) {
         if (!this.jsonData || !this.jsonData.move) return;
         const that = this;
 

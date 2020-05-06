@@ -12,6 +12,7 @@
 
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.js';
+  import { LinearGradient } from "echarts/lib/util/graphic";
   // import * as ecStat from "echarts-stat";
 
   export default {
@@ -34,13 +35,20 @@
           animation: true,
           animationDuration: 300,
           animationEasing: 'cubicInOut',
+          color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+            offset: 0,
+            color: '#dd39ff'
+          }, {
+            offset: 1,
+            color: '#ffffff'
+          }]),
           roam: true,
           data: [],
           force: {
             initLayout: 'circular',
             layoutAnimation: true,
-            gravity: 0,
-            repulsion: 100,
+            gravity: 0.01,
+            repulsion: 80,
             edgeLength: 5
           },
           links: []
@@ -62,7 +70,7 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json);
       },
-      async showData(n) {
+      showData(n) {
         if (!this.jsonData) return;
 
         const that = this;
@@ -74,9 +82,9 @@
 
         for (const nde of this.jsonData[n].nodes) {
           const node = {
-            symbolSize: 10,
+            symbolSize: 9,
             id: nde,
-            name: nde
+            name: nde,
           };
 
           that.graph.series[0].data.push(node);
@@ -87,8 +95,15 @@
             source: e.source,
             target: e.target,
             lineStyle: {
-              width: 1,
-              curveness: 0.0
+              width: 2,
+              curveness: 0.0,
+              color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+                offset: 0,
+                color: '#6ca8ff'
+              }, {
+                offset: 1,
+                color: '#f1f6ff'
+              }]),
             }
           };
           that.graph.series[0].links.push(edge);

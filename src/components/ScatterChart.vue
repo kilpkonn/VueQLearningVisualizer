@@ -12,6 +12,7 @@
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.js';
   import * as ecStat from "echarts-stat";
+  import { LinearGradient } from "echarts/lib/util/graphic";
 
   export default {
     name: 'scatter',
@@ -24,11 +25,20 @@
       jsonData: {},
       scatter: {
         title: {
-          text: 'Simulation results'
+          text: 'Simulation results',
+          textStyle: {
+            color: "#d4d4d4"
+          }
         },
         tooltip: {},
         xAxis: {
           data: [0]
+        },
+        axisLabel: {
+          fontWeight: 'bolder',
+          color: '#b6b6b6',
+          shadowColor: '#c6c5c5',
+          shadowBlur: 10
         },
         yAxis: {
           min: 0,
@@ -37,11 +47,25 @@
         series: [{
           name: 'Results',
           type: 'scatter',
+          color:  new LinearGradient(0.1, 0, 0, 1, [{
+            offset: 0,
+            color: '#73ebfc'
+          }, {
+            offset: 1,
+            color: '#4b85ff'
+          }]),
           data: [0],
         },
           {
             name: 'line',
             type: 'line',
+            color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+              offset: 0,
+              color: '#e2c9ff'
+            }, {
+              offset: 1,
+              color: '#c945ff'
+            }]),
             smooth: true,
             showSymbol: false,
             data: [0],
@@ -78,7 +102,7 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      async showData(n) {
+      showData(n) {
         if (!this.jsonData) return;
 
         const that = this;

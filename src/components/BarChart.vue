@@ -12,6 +12,7 @@
 
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.js';
+  import { LinearGradient } from "echarts/lib/util/graphic";
   // import * as ecStat from "echarts-stat";
 
   export default {
@@ -25,11 +26,20 @@
       jsonData: {},
       bar: {
         title: {
-          text: 'Buckets distribution'
+          text: 'Buckets distribution (logarithmic)',
+          textStyle: {
+            color: "#d4d4d4"
+          }
         },
         tooltip: {},
         xAxis: {
-          data: [0]
+          data: [0],
+        },
+        axisLabel: {
+          fontWeight: 'bolder',
+          color: '#b6b6b6',
+          shadowColor: '#c6c5c5',
+          shadowBlur: 10
         },
         yAxis: {
           type: 'log',
@@ -38,6 +48,13 @@
         series: [{
           name: 'Results',
           type: 'bar',
+          color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
+            offset: 0,
+            color: '#1f7bff'
+          }, {
+            offset: 1,
+            color: '#d7e8fc'
+          }]),
           data: [0],
         }]
       }
@@ -57,7 +74,7 @@
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },
-      async showData(n) {
+      showData(n) {
         if (!this.jsonData[n % this.jsonData.length]) return;
 
         const that = this;
