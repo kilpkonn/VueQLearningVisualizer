@@ -22,7 +22,7 @@
     props: {},
     data: () => ({
       loading: false,
-      jsonData: {},
+      jsonData: [],
       graph: {
         /*title: {
           text: 'Q-nodes'
@@ -64,46 +64,34 @@
       },
       async showData(n) {
         if (!this.jsonData) return;
+
         const that = this;
-        let nodes = [];
-        let edges = [];
-        for (let i = 0; i < n; i++) {
-          if (!this.jsonData[i]) continue;
-
-          this.jsonData[i].nodes.forEach(node => {
-            if (nodes.filter(no => no.id === node).length === 0) {
-              nodes.push({
-                symbolSize: 10,
-                id: node,
-                name: node
-              });
-            }
-          });
-
-          this.jsonData[i].edges.forEach(e => {
-            edges.push({
-              source: e.source,
-              target: e.target,
-              lineStyle: {
-                width: 1,
-                curveness: 0.0
-              }
-            });
-          });
+        n = n % this.jsonData.length;
+        if (n === 0) {
+          that.graph.series[0].data = [];
+          that.graph.series[0].links = [];
         }
-        if (that.graph.series[0].data.length !== nodes.length) {
-          for (const node of nodes) {
-            if (that.graph.series[0].data.filter(a => a.id === node.id).length === 0) {
-              that.graph.series[0].data.push(node);
-            }
-          }
+
+        for (const nde of this.jsonData[n].nodes) {
+          const node = {
+            symbolSize: 10,
+            id: nde,
+            name: nde
+          };
+
+          that.graph.series[0].data.push(node);
         }
-        if (that.graph.series[0].links.length !== edges.length) {
-          for (const edge of edges) {
-            if (that.graph.series[0].links.filter(e => e.target === edge.target && e.source === edge.source)) {
-              that.graph.series[0].links.push(edge);
+
+        for (const e of this.jsonData[n].edges) {
+          const edge = {
+            source: e.source,
+            target: e.target,
+            lineStyle: {
+              width: 1,
+              curveness: 0.0
             }
-          }
+          };
+          that.graph.series[0].links.push(edge);
         }
       }
     }
