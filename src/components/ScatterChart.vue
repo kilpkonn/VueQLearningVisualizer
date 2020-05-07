@@ -133,6 +133,6 @@
 
 <style scoped>
     .echarts {
-        height: 480px;
+        height: 490px;
     }
 </style>
