@@ -65,11 +65,13 @@
             top: 20px;
             right: 20px;
             left: 20px;
+            height: 39vh;
         }
 
         .secondary-charts-container {
             margin-top: 40vh;
             margin-bottom: 0;
+            background: transparent;
         }
     }
 
