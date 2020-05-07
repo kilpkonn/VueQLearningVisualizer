@@ -92,7 +92,7 @@
         console.log(event, instance, ECharts);
       },
       loadData() {
-        fetch("/data/avg_move_list.json")
+        fetch("./data/avg_move_list.json")
           .then((res) => res.json())
           .then((json) => this.jsonData = json)
       },

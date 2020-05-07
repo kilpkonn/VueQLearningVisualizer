@@ -66,7 +66,7 @@
         console.log(event, instance, ECharts);
       },
       loadData() {
-        fetch("/data/nodes.json")
+        fetch("./data/nodes.json")
           .then((res) => res.json())
           .then((json) => this.jsonData = json);
       },
