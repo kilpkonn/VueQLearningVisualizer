@@ -26,7 +26,7 @@
       jsonData: {},
       line: {
         title: {
-          text: 'Alpha & Epsilon vs Avg move',
+          text: 'Alpha & Epsilon',
           subtext: 'Alpha - learning rate (how much is changes knowledge of world based on last result), Epsilon - exploration rate (how often it takes random moves)',
           textStyle: {
             color: "#d4d4d4"
