@@ -3,13 +3,13 @@
         <div class="is-centered">
             <h1 class="is-size-1">Q learning</h1>
         </div>
-        <div class="columns graph">
+        <div class="columns secondary-charts-container">
             <GraphChart ref="graphChart" class="column"/>
+            <LineChart ref="lineChart" class="column"/>
         </div>
         <div class="columns secondary-charts-container">
             <ScatterChart ref="scatterChart" class="column"/>
             <BarChart ref="barChart" class="column"/>
-            <LineChart ref="lineChart" class="column"/>
         </div>
     </div>
 </template>
@@ -67,6 +67,11 @@
         .secondary-charts-container {
             margin: 10px 10px 0;
             background: transparent;
+        }
+
+        .column {
+            margin: 0;
+            padding: 0;
         }
     }
 

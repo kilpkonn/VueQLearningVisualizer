@@ -122,6 +122,7 @@
 
 <style scoped>
     .echarts {
-        height: 500px;
+        height: 420px;
+        margin: 0;
     }
 </style>
