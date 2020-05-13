@@ -26,7 +26,7 @@
       scatter: {
         title: {
           text: 'Simulation results',
-          subtext: 'Dots represent simulation result scores (bigger better)',
+          subtext: 'Dots represent simulation result scores (bigger better), line is polynomial regression that tries to predict future results',
           textStyle: {
             color: "#d4d4d4"
           },
@@ -36,7 +36,13 @@
         },
         tooltip: {},
         xAxis: {
-          data: [0]
+          data: [0],
+          name: 'Run number',
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: "#a7a7a7",
+            padding: 12
+          }
         },
         axisLabel: {
           fontWeight: 'bolder',
@@ -46,7 +52,13 @@
         },
         yAxis: {
           min: 0,
-          max: 200
+          max: 200,
+          name: 'Score',
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: "#a7a7a7",
+            padding: 20
+          }
         },
         series: [{
           name: 'Results',

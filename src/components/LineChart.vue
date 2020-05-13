@@ -27,7 +27,7 @@
       line: {
         title: {
           text: 'Alpha & Epsilon vs Avg move',
-          subtext: 'Alpha - learning rate, Epsilon - exploration rate',
+          subtext: 'Alpha - learning rate (how much is changes knowledge of world based on last result), Epsilon - exploration rate (how often it takes random moves)',
           textStyle: {
             color: "#d4d4d4"
           },
@@ -37,7 +37,13 @@
         },
         tooltip: {},
         xAxis: {
-          data: [0]
+          data: [0],
+          name: 'Run number',
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: "#a7a7a7",
+            padding: 12
+          }
         },
         axisLabel: {
           fontWeight: 'bolder',
@@ -45,7 +51,14 @@
           shadowColor: '#c6c5c5',
           shadowBlur: 10
         },
-        yAxis: {},
+        yAxis: {
+          name: 'Multiplier',
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: "#a7a7a7",
+            padding: 20
+          }
+        },
         series: [{
           name: 'Results',
           type: 'line',
@@ -110,7 +123,7 @@
         }
 
         that.line.xAxis.data = xData;
-        that.line.series[0].data = this.jsonData.move.slice(0, n % this.jsonData.move.length);
+        //that.line.series[0].data = this.jsonData.move.slice(0, n % this.jsonData.move.length);
         that.line.series[1].data = this.jsonData.alpha.slice(0, n % this.jsonData.move.length);
         that.line.series[2].data = this.jsonData.epsilon.slice(0, n % this.jsonData.move.length);
       }

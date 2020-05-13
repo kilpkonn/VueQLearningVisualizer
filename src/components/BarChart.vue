@@ -27,7 +27,7 @@
       bar: {
         title: {
           text: 'Buckets distribution (logarithmic)',
-          subtext: 'Equal heights mean random distribution, center is 0',
+          subtext: 'Equal heights mean random distribution, center is 0 on x-axis. Ideally would be narrow normal distribution',
           textStyle: {
             color: "#d4d4d4"
           },
@@ -38,6 +38,12 @@
         tooltip: {},
         xAxis: {
           data: [0],
+          name: 'Buckets',
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: "#a7a7a7",
+            padding: 12
+          }
         },
         axisLabel: {
           fontWeight: 'bolder',
@@ -47,7 +53,13 @@
         },
         yAxis: {
           type: 'log',
-          min: 1
+          min: 1,
+          name: 'Count',
+          nameLocation: 'middle',
+          nameTextStyle: {
+            color: "#a7a7a7",
+            padding: 20
+          }
         },
         series: [{
           name: 'Results',

@@ -27,7 +27,7 @@
       graph: {
         title: {
           text: 'Q-nodes',
-          subtext: 'Nodes represent states, links are transitions',
+          subtext: 'Nodes represent states (think of them as position coordinates), links are actions (transitions from state to another)',
           textStyle: {
             color: "#d4d4d4"
           },
@@ -41,7 +41,7 @@
           layout: 'force',
           animation: true,
           animationDuration: 500,
-          animationEasing: 'cubicInOut',
+          animationEasing: 'linear',
           color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
             offset: 0,
             color: '#dd39ff'
@@ -55,7 +55,7 @@
             initLayout: 'circular',
             layoutAnimation: true,
             gravity: 0.01,
-            repulsion: 110,
+            repulsion: 100,
             edgeLength: 10
           },
           links: []
