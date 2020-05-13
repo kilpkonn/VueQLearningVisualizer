@@ -89,10 +89,10 @@
             data: [0],
             color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
               offset: 0,
-              color: '#9a0707'
+              color: '#d40b0b'
             }, {
               offset: 1,
-              color: '#c77e31'
+              color: '#ec9437'
             }]),
           },
         ]
