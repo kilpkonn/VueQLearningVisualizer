@@ -27,9 +27,13 @@
       line: {
         title: {
           text: 'Alpha & Epsilon vs Avg move',
+          subtext: 'Alpha - learning rate, Epsilon - exploration rate',
           textStyle: {
             color: "#d4d4d4"
-          }
+          },
+          subtextStyle: {
+            color: "#a7a7a7"
+          },
         },
         tooltip: {},
         xAxis: {

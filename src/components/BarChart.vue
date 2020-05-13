@@ -27,9 +27,13 @@
       bar: {
         title: {
           text: 'Buckets distribution (logarithmic)',
+          subtext: 'Equal heights mean random distribution, center is 0',
           textStyle: {
             color: "#d4d4d4"
-          }
+          },
+          subtextStyle: {
+            color: "#a7a7a7"
+          },
         },
         tooltip: {},
         xAxis: {

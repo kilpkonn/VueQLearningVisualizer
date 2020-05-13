@@ -26,9 +26,13 @@
       scatter: {
         title: {
           text: 'Simulation results',
+          subtext: 'Dots represent simulation result scores (bigger better)',
           textStyle: {
             color: "#d4d4d4"
-          }
+          },
+          subtextStyle: {
+            color: "#a7a7a7"
+          },
         },
         tooltip: {},
         xAxis: {

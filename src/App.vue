@@ -33,7 +33,7 @@
     }),
     mounted() {
       setTimeout(() => {
-        setInterval(() => this.updateCharts(), 300);
+        setInterval(() => this.updateCharts(), 500);
       }, 1000);
     },
     methods: {
@@ -61,16 +61,11 @@
         background: #000f2a;
 
         .graph {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            left: 20px;
-            height: 39vh;
+            margin: 20px;
         }
 
         .secondary-charts-container {
-            margin-top: 40vh;
-            margin-bottom: 0;
+            margin: 10px 10px 0;
             background: transparent;
         }
     }

@@ -25,15 +25,22 @@
       loading: false,
       jsonData: [],
       graph: {
-        /*title: {
-          text: 'Q-nodes'
-        },*/
+        title: {
+          text: 'Q-nodes',
+          subtext: 'Nodes represent states, links are transitions',
+          textStyle: {
+            color: "#d4d4d4"
+          },
+          subtextStyle: {
+            color: "#a7a7a7"
+          },
+        },
         tooltip: {},
         series: [{
           type: 'graph',
           layout: 'force',
           animation: true,
-          animationDuration: 300,
+          animationDuration: 500,
           animationEasing: 'cubicInOut',
           color:  new LinearGradient(0.5, 0.5, 0.4, 1, [{
             offset: 0,
@@ -48,8 +55,8 @@
             initLayout: 'circular',
             layoutAnimation: true,
             gravity: 0.01,
-            repulsion: 80,
-            edgeLength: 5
+            repulsion: 110,
+            edgeLength: 10
           },
           links: []
         }]
