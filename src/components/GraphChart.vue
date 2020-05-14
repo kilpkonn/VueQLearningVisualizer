@@ -54,8 +54,8 @@
           force: {
             initLayout: 'circular',
             layoutAnimation: true,
-            gravity: 0.01,
-            repulsion: 100,
+            gravity: 0.05,
+            repulsion: 50,
             edgeLength: 10
           },
           links: []
