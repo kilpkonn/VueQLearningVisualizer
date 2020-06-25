@@ -1,6 +1,6 @@
 # q-learning-visualizer
 
-[https://kilpkonn.github.io/vue-q-learning-visualizer/](https://kilpkonn.github.io/vue-q-learning-visualizer/)
+[http://dijkstra.cs.ttu.ee/~taannu/kasutajaliidesed/prax4/](http://dijkstra.cs.ttu.ee/~taannu/kasutajaliidesed/prax4/)
 
 ## Project setup
 ```
