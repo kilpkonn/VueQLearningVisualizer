@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "bulma": "^0.8.2",
-    "bulma-helpers": "^0.3.10",
+    "bulma-helpers": "^0.3.12",
     "core-js": "^3.6.4",
-    "echarts": "^4.7.0",
+    "echarts": "^4.8.0",
     "echarts-stat": "^1.1.1",
     "vue": "^2.6.11",
     "vue-echarts-v3": "^2.0.1"
